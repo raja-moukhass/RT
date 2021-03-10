@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 15:25:01 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/10 16:59:15 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/10 17:54:52 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ double	intersection_cylinder(t_ray *ray, t_obj *cylinder)
 	//double	m;
 	double t2 = -1;
 	double t3 = 1;
-	t_vec 	p1 = (t_vec){0,10,0};
-	t_vec p2 = (t_vec){0, -10,0};
+	t_vec 	p1 = (t_vec){0,5,0};
+	t_vec p2 = (t_vec){0, -5,0};
 	double	delta;
 
 	x = vec_sub(ray->o, cylinder->pos);

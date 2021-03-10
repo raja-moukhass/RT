@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 15:13:37 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/10 16:38:26 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/10 17:59:27 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,9 @@ int		init_obj(t_obj *temp, int i, t_data *data, int id)
 			temp->radius2 = ft_atof(ft_strdup(data->tab[i]));
 		}
 	if (id != 1)
-	{ if (id == 6)
+	{
+		if (id == 6)
+			temp->axis = split_data(data, data->tab[++i]);
 		temp->axis = split_data(data, data->tab[++i]);
 		temp->axis = ft_transform_ray(temp);
 	}
@@ -121,3 +123,5 @@ int		init_obj(t_obj *temp, int i, t_data *data, int id)
 	}
 	return (i);
 }
+
+
