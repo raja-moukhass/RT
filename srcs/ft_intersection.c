@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 15:25:01 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/10 10:37:25 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/10 11:51:21 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,24 @@ double	intersection_cylinder(t_ray *ray, t_obj *cylinder)
 	return (0);
 }
 
+
+// t_vec	normal_ellipsoid(t_ellipsoid *e, t_vec p)
+// {
+// 	return(vec_product(p, 1/e->radius));
+// }
+
 int		intersection_ellipsoid(t_ellipsoid *e, t_ray *r)
 {
-	t_vec	x;
+	t_vec		x;
+	t_sol		n;
 	t_delta		d;
 	double		a1;
 	double		a2;
-	t_sol n;
-
+	e->k = 0.5;
+	e->v = (t_vec){0,1,0};
+	e->radius2 = 1;
+	e->radius2 =1;
+	r->o = (t_vec){0,0,0};
 	x = r->o;
 	e->radius2 = e->radius * e->radius;
 	a1 = 2.0 * e->k * dot_product(r->dir, e->v);
