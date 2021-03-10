@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 09:58:34 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/10 10:22:36 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/10 16:01:43 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,11 @@ typedef	struct	s_obj
 	double			an_ra;
 	double			(*inter)(t_ray *ray, struct s_obj *);
 	struct s_obj	*next;
+	double radius;
+	double radius2;
+	double k;
+	t_vec v;
+
 
 }				t_obj;
 
@@ -218,15 +223,7 @@ typedef	struct	s_split_data
 	t_vec	ret;
 }				t_split_data;
 
-typedef struct s_ellipsoid
-{
-	double radius;
-	double radius2;
-	double k;
-	t_vec v;
-
-}t_ellipsoid;
-int				intersection_ellipsoid(t_ellipsoid *e, t_ray *r);
+double				intersection_ellipsoid(t_ray *r, t_obj *e);
 double			get_closest(t_data *data, int x, int y, t_obj **save);
 t_vec			split_data(t_data *data, char *str);
 void			color_limit(t_vec *color);

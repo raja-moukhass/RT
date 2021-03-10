@@ -6,7 +6,7 @@
 #    By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 12:17:42 by ramoukha          #+#    #+#              #
-#    Updated: 2021/03/03 16:05:50 by ramoukha         ###   ########.fr        #
+#    Updated: 2021/03/10 16:20:29 by ramoukha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ OB =  srcs/main.o srcs/vec_calc.o srcs/transforms.o  srcs/ft_intersection.o srcs
 INC_DIR = ./includes/
 INC = ./includes/rtv1.h
 OB = $(SRC:.c=.o)
-NAME =  RTV1
+NAME =  a.out
 LIBFLAGS = -L ./libft -lft -lpthread -lmlx -framework OpenGL -framework AppKit
 
 all : $(NAME)

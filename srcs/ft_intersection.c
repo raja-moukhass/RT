@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 15:25:01 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/10 11:51:21 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/10 16:59:15 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,22 +121,20 @@ double	intersection_cylinder(t_ray *ray, t_obj *cylinder)
 // 	return(vec_product(p, 1/e->radius));
 // }
 
-int		intersection_ellipsoid(t_ellipsoid *e, t_ray *r)
+double	intersection_ellipsoid(t_ray *r, t_obj *e)
 {
 	t_vec		x;
 	t_sol		n;
 	t_delta		d;
 	double		a1;
 	double		a2;
-	e->k = 0.5;
-	e->v = (t_vec){0,1,0};
-	e->radius2 = 1;
-	e->radius2 =1;
-	r->o = (t_vec){0,0,0};
+
+
+	e->k = 6;
 	x = r->o;
 	e->radius2 = e->radius * e->radius;
-	a1 = 2.0 * e->k * dot_product(r->dir, e->v);
-	a2 = e->radius2 + 2.0 * e->k * dot_product(x, e->v) - e->k;
+	a1 = 2.0 * e->k * dot_product(r->dir, e->axis);
+	a2 = e->radius2 + 2.0 * e->k * dot_product(x, e->axis) - e->k;
 	d.a = 4.0 * e->radius2 * dot_product(r->dir, r->dir) - a1 * a1;
 	d.b = 2.0 * (4.0 * e->radius2 * dot_product(r->dir, x) - a1 * a2);
 	d.c = 4.0 * e->radius2 * dot_product(x, x) - a2 * a2;
