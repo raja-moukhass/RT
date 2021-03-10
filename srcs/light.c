@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:58:13 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/02 17:36:12 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/10 10:11:03 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_vec		light_it_up(t_data *data, int x, int y, t_obj *obj)
 		obj->n = normalize(vec_sub(vec_sub(obj->hit,
 		obj->pos), vec_product(obj->axis, (1 + k + k) * m)));
 	}
+	
 	color = get_color(data, obj, x, y);
 	return (color);
 }

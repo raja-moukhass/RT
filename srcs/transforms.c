@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 12:54:06 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/03 14:45:15 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/10 10:16:04 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,4 @@ t_vec	ft_rotate(t_vec v, t_vec rot)
 	res = ft_rotate_z(res, rot.z * M_PI / 180);
 	return (res);
 }
+

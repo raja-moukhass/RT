@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:17:33 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/03 15:37:13 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/10 10:27:28 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	obj_check(t_data **dat, int i, int id)
 		temp->inter = &intersect_plane;
 	else if (id == 5)
 		temp->inter = &cone_intersection;
+	// else if (id == 6)
+	// 	temp->inter = &intersection_ellipsoid;
 }
 
 void	camera_check(t_data **dat, int i)
