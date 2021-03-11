@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 15:25:01 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/10 17:54:52 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/11 17:35:12 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,27 @@ double	intersection_ellipsoid(t_ray *r, t_obj *e)
 	return (ft_min_ray((-d.b + d.delta) / (2.0 * d.a),
 				(-d.b - d.delta) / (2.0 * d.a), n.t));
 }
+
+double	intersection_paraploid(t_ray *r, t_obj *p)
+{
+	t_vec x;
+	t_delta d;
+	t_sol n;
+	x = vec_sub(r->o, p->pos);
+	d.a = dot_product(r->dir, r->dir) - pow(dot_product(r->dir, p->axis), 2);
+	d.b = 2.0 * (dot_product(r->dir, x)
+			- dot_product(r->dir, p->axis) * (dot_product(x, p->axis)
+				+ 2.0 * p->radius));
+	d.c = dot_product(x, x) - dot_product(x, p->axis) * (dot_product(x, p->axis)
+			+ 4.0 *  p->radius);
+	d.delta = d.b * d.b - 4.0 * d.c * d.a;
+	if (d.delta < 0.0001)
+		return (0);
+	d.delta = sqrt(d.delta);
+	return (ft_min_ray((-d.b + d.delta) / (2.0 * d.a),
+				(-d.b - d.delta) / (2.0 * d.a), n.t));
+}
+
 
 double	intersection_spher(t_ray *r, t_obj *s)
 {

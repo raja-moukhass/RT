@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 09:58:34 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/10 16:01:43 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/11 10:18:55 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ typedef	struct	s_split_data
 	int		dot;
 	t_vec	ret;
 }				t_split_data;
-
+double	intersection_paraploid(t_ray *r, t_obj *p);
 double				intersection_ellipsoid(t_ray *r, t_obj *e);
 double			get_closest(t_data *data, int x, int y, t_obj **save);
 t_vec			split_data(t_data *data, char *str);

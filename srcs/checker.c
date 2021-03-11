@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:17:33 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/10 16:21:58 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/11 17:16:16 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ int		ft_checker(t_data **data)
 			obj_check(data, i, 4);
 		if (ft_strcmp((*data)->tab[i], "cone") == 0)
 			obj_check(data, i, 5);
-			if (ft_strcmp((*data)->tab[i], "ellipsoid") == 0)
+		if (ft_strcmp((*data)->tab[i], "ellipsoid") == 0)
 			obj_check(data, i, 6);
+		if (ft_strcmp((*data)->tab[i], "paraploid") == 0)
+			obj_check(data, i, 7);
+
 	}
 	if (!light)
 		call_error(*data);
@@ -80,6 +83,9 @@ void	obj_check(t_data **dat, int i, int id)
 		temp->inter = &cone_intersection;
 	else if (id == 6)
 		temp->inter = &intersection_ellipsoid;
+	else if (id == 7)
+		temp->inter = &intersection_paraploid;
+
 }
 
 void	camera_check(t_data **dat, int i)

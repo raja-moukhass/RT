@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 15:13:37 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/10 17:59:27 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/11 17:22:10 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int		init_obj(t_obj *temp, int i, t_data *data, int id)
 	temp->trans = split_data(data, data->tab[++i]);
 	temp->rot = split_data(data, data->tab[++i]);
 	temp->color = split_data(data, data->tab[++i]);
-	if (id != 4 && id != 6)
+	if (id != 4 && id != 6 && id != 7)
 	{
 		i++;
 		if (str_isnum(data->tab[i]))
@@ -103,7 +103,7 @@ int		init_obj(t_obj *temp, int i, t_data *data, int id)
 		else
 			call_error(data);
 	}
-	if (id == 6)
+	if (id == 6 || id == 7)
 		{
 			i++;
 			temp->radius = ft_atof(ft_strdup(data->tab[i]));
@@ -112,10 +112,14 @@ int		init_obj(t_obj *temp, int i, t_data *data, int id)
 		}
 	if (id != 1)
 	{
-		if (id == 6)
+		if (id == 6 || id == 7)
 			temp->axis = split_data(data, data->tab[++i]);
-		temp->axis = split_data(data, data->tab[++i]);
-		temp->axis = ft_transform_ray(temp);
+		else
+		{
+			temp->axis = split_data(data, data->tab[++i]);
+			temp->axis = ft_transform_ray(temp);
+		}
+
 	}
 	if (id == 1)
 	{
