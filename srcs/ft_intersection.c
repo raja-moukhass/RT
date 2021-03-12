@@ -6,7 +6,7 @@
 /*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 15:25:01 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/11 17:35:12 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/12 17:06:34 by ramoukha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ double	intersection_ellipsoid(t_ray *r, t_obj *e)
 
 
 	e->k = 6;
-	x = r->o;
+	x = vec_sub(r->o, e->pos);
 	e->radius2 = e->radius * e->radius;
 	a1 = 2.0 * e->k * dot_product(r->dir, e->axis);
 	a2 = e->radius2 + 2.0 * e->k * dot_product(x, e->axis) - e->k;
@@ -142,8 +142,16 @@ double	intersection_ellipsoid(t_ray *r, t_obj *e)
 	if (d.delta < 0.0001)
 		return (0);
 	d.delta = sqrt(d.delta);
-	return (ft_min_ray((-d.b + d.delta) / (2.0 * d.a),
-				(-d.b - d.delta) / (2.0 * d.a), n.t));
+	double t = ft_min_ray((-d.b + d.delta) / (2.0 * d.a),
+				(-d.b - d.delta) / (2.0 * d.a), n.t);
+		t_vec cmid = vec_add(e->pos, vec_product(e->axis, e->k / 2));
+		e->hit = vec_add(r->o, vec_product(r->dir, t));
+		t_vec rr = vec_sub(e->hit, cmid);
+		double nbr = (1 - (d.b * d.b)/(d.a * d.a)) * dot_product(e->axis, rr);
+		t_vec product = vec_product(e->axis, nbr);
+	e->n =normalize(vec_sub(rr, product));
+	return (t);
+
 }
 
 double	intersection_paraploid(t_ray *r, t_obj *p)
