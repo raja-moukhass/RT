@@ -3,14 +3,15 @@ camera
 0 0 -100
 0.0 0 0
 
-ellipsoid
+paraploid
 0 0 0
 0.0 0 0
 0.0 0.0 0
 255 0 0
 10
 10
-0 1 0
+0 -1 0
+
 
 
 light

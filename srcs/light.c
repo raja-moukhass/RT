@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:58:13 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/12 16:43:58 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/17 17:58:16 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ t_var_light	*ft_var_light(t_data *data, t_obj *obj, t_var_light *light)
 	light->rm = vec_sub(vec_product(light->dd, 2), light->l);
 	light->intensite_pixel = (pow(fmax(0,
 	dot_product(light->rm, light->v)), 40));
+	if (light->ang_norm_light  > 0)
+		ft_putendl("");
 	return (light);
 }
 
@@ -59,6 +61,8 @@ t_vec		get_color(t_data *data, t_obj *obj, int x, int y)
 	t_var_light		*light;
 	t_vec			color;
 
+if (obj->id == 6)
+	ft_putendl("");
 	light = malloc(sizeof(t_var_light));
 	light = ft_var_light(data, obj, light);
 	color.x = obj->color.x * 0.3;

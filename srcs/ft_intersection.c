@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_intersection.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 15:25:01 by ramoukha          #+#    #+#             */
-/*   Updated: 2021/03/12 17:06:34 by ramoukha         ###   ########.fr       */
+/*   Updated: 2021/03/17 19:23:46 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ double	intersection_cylinder(t_ray *ray, t_obj *cylinder)
 		t_vec q = vec_add(ray->o, vec_product(ray->dir, n.t1));
 		t2 = dot_product(cylinder->axis, vec_sub(q,p1));
 		t3 = dot_product(cylinder->axis, vec_sub(q,p2));
-
 	}
 
 	if (t2 < 0  && t3 > 0)
@@ -135,21 +134,19 @@ double	intersection_ellipsoid(t_ray *r, t_obj *e)
 	e->radius2 = e->radius * e->radius;
 	a1 = 2.0 * e->k * dot_product(r->dir, e->axis);
 	a2 = e->radius2 + 2.0 * e->k * dot_product(x, e->axis) - e->k;
-	d.a = 4.0 * e->radius2 * dot_product(r->dir, r->dir) - a1 * a1;
-	d.b = 2.0 * (4.0 * e->radius2 * dot_product(r->dir, x) - a1 * a2);
-	d.c = 4.0 * e->radius2 * dot_product(x, x) - a2 * a2;
+	d.a = 4.0 * e->radius2 * dot_product(r->dir, r->dir) - (a1 * a1);
+	d.b = 2.0 * (4.0 * e->radius2 * dot_product(r->dir, x) - (a1 * a2));
+	d.c = 4.0 * e->radius2 * dot_product(x, x) - (a2 * a2);
 	d.delta = d.b * d.b - 4.0 * d.c * d.a;
 	if (d.delta < 0.0001)
 		return (0);
 	d.delta = sqrt(d.delta);
 	double t = ft_min_ray((-d.b + d.delta) / (2.0 * d.a),
-				(-d.b - d.delta) / (2.0 * d.a), n.t);
-		t_vec cmid = vec_add(e->pos, vec_product(e->axis, e->k / 2));
-		e->hit = vec_add(r->o, vec_product(r->dir, t));
-		t_vec rr = vec_sub(e->hit, cmid);
-		double nbr = (1 - (d.b * d.b)/(d.a * d.a)) * dot_product(e->axis, rr);
-		t_vec product = vec_product(e->axis, nbr);
-	e->n =normalize(vec_sub(rr, product));
+	 (-d.b - d.delta) / (2.0 * d.a), n.t);
+	e->hit = vec_add(r->o, vec_product(r->dir, t));
+	e->n =normalize(vec_product(e->hit, 1/e->radius));
+	if (e->id == 6)
+		ft_putendl("");
 	return (t);
 
 }
@@ -169,9 +166,18 @@ double	intersection_paraploid(t_ray *r, t_obj *p)
 	d.delta = d.b * d.b - 4.0 * d.c * d.a;
 	if (d.delta < 0.0001)
 		return (0);
-	d.delta = sqrt(d.delta);
-	return (ft_min_ray((-d.b + d.delta) / (2.0 * d.a),
-				(-d.b - d.delta) / (2.0 * d.a), n.t));
+	d.delta = sqrt(d.delta); 
+	double t = ft_min_ray((-d.b + d.delta) / (2.0 * d.a),
+				(-d.b - d.delta) / (2.0 * d.a), n.t);
+	p->hit = vec_add(r->o, vec_product(r->dir, t));
+	double m = dot_product(vec_sub(p->hit, p->pos),p->axis);
+	t_vec pc = vec_sub(p->hit,p->pos);
+	t_vec mk = vec_product(p->axis, m +p->radius);
+	 p->n = normalize (vec_sub(pc, mk));
+
+	
+
+			return(t);
 }
 
 

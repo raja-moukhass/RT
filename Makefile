@@ -3,21 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ramoukha <ramoukha@student.42.fr>          +#+  +:+       +#+         #
+#    By: amya <amya@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/12 12:17:42 by ramoukha          #+#    #+#              #
-#    Updated: 2021/03/10 16:20:29 by ramoukha         ###   ########.fr        #
+#    Updated: 2021/03/17 17:03:15 by amya             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-COMP = gcc -Werror -Wextra -Wall
+COMP = gcc -Werror -Wextra -Wall -g
 SRC = srcs/main.c srcs/vec_calc.c  srcs/transforms.c srcs/ft_intersection.c srcs/tools.c srcs/checker.c srcs/init.c srcs/normal.c srcs/tools_2.c srcs/light.c
 OB =  srcs/main.o srcs/vec_calc.o srcs/transforms.o  srcs/ft_intersection.o srcs/tools.o srcs/checker.o srcs/init.o srcs/normal.o srcs/tools_2.o srcs/light.o
 INC_DIR = ./includes/
 INC = ./includes/rtv1.h
 OB = $(SRC:.c=.o)
 NAME =  a.out
-LIBFLAGS = -L ./libft -lft -lpthread -lmlx -framework OpenGL -framework AppKit
+LIBFLAGS =  -g -L ./libft -lft -lpthread -lmlx -framework OpenGL -framework AppKit
 
 all : $(NAME)
 
